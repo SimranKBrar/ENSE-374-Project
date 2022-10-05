@@ -16,7 +16,9 @@ The reason we wanted to take on this project is because sellers have a hard time
 - User Experience
 - Inventory tracking
 - Account Control
-- 
+
 
 ## Vlogs
 - Acitivity #1: [Vlog # 1](https://www.youtube.com/watch?v=4PlpzcvNVJE)
+
+## Files
