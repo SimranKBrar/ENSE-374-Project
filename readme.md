@@ -20,5 +20,7 @@ The reason we wanted to take on this project is because sellers have a hard time
 
 ## Vlogs
 - Acitivity #1: [Vlog # 1](https://www.youtube.com/watch?v=4PlpzcvNVJE)
+- Acitivity #2: [Vlog # 2](https://youtu.be/rN59CbgBfXI)
+
 
 ## [Kanban](https://github.com/users/Rsa149/projects/3)
