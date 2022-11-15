@@ -13,6 +13,19 @@ body{
 	letter-spacing: 2px;
 	text-transform: uppercase;
 }
+main{
+	position: fixed;
+	top: 60px;
+	left: 150px;
+	display: flex;
+ 	justify-content: center;
+	 float: left;
+}
+.content{
+	margin-top: 300 px;
+	width: 1400px;
+	text-align: center;
+}
 
 .top_navbar{
 	position: fixed;
