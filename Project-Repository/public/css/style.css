@@ -14,19 +14,41 @@ body{
 	text-transform: uppercase;
 }
 main{
+	
 	position: fixed;
 	top: 60px;
 	left: 150px;
 	display: flex;
  	justify-content: center;
-	 float: left;
+	float: left;
 }
 .content{
 	margin-top: 300 px;
 	width: 1400px;
 	text-align: center;
+	
 }
 
+.right{
+	text-align: center;
+	position: fixed;
+	top: 400px;
+	left: 950px;
+}
+.left{
+	
+	position: fixed;
+	top: 400px;
+	left: 350px;
+	display: flexbox;
+}
+.item{
+	display: grid;
+	align-self: center;
+	width: 150px;
+	grid-gap: 10px;
+	grid-template-columns: 1fr 1fr;
+}
 .top_navbar{
 	position: fixed;
 	top: 0;
@@ -77,4 +99,17 @@ ul.list-none {
 .sidebar ul li a:hover{
 	background: #5bc583;
 	color: #5bc583;
+}
+div.block3 {
+    display: block;
+    text-align: center;
+	position: fixed;
+	top: 70px;
+	left: 550px;
+	width: 600px;
+	text-align: center;
+    background-color: #82b68f;
+    box-shadow: 4px 3px 8px 1px #969696;
+    padding: 10px;
+    
 }
