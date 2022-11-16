@@ -28,5 +28,27 @@ app.get("/", (req, res) => { //front page
     res.sendFile(__dirname + "/cart.html")
     console.log("A user requested the root route");
   });
-
- 
+  app.get("/index", (req, res) => { //front page
+    res.sendFile(__dirname + "/index.html")
+    console.log("A user requested the root route");
+  });
+  app.get("/index.html", (req, res) => { //front page
+    res.sendFile(__dirname + "/index.html")
+    console.log("A user requested the root route");
+  });
+  app.get("/search.html", (req, res) => { //front page
+    res.sendFile(__dirname + "/search.html")
+    console.log("A user requested the root route");
+  });
+  app.get("/itemdetail.html", (req, res) => { //front page
+    res.sendFile(__dirname + "/itemdetail.html")
+    console.log("A user requested the root route");
+  });
+  app.get("/checkout.html", (req, res) => { //front page
+    res.sendFile(__dirname + "/checkout.html")
+    console.log("A user requested the root route");
+  });
+  app.get("/menu.html", (req, res) => { //front page
+    res.sendFile(__dirname + "/menu.html")
+    console.log("A user requested the root route");
+  });
