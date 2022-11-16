@@ -20,6 +20,7 @@ app.get("/", (req, res) => { //front page
     res.sendFile(__dirname + "/index.html")
     console.log("A user requested the root route");
   });
+<<<<<<< HEAD
   app.get("/list.html", (req, res) => { //front page
     res.sendFile(__dirname + "/list.html")
     console.log("A user requested the root route");
@@ -52,3 +53,15 @@ app.get("/", (req, res) => { //front page
     res.sendFile(__dirname + "/menu.html")
     console.log("A user requested the root route");
   });
+=======
+
+  app.get("/login", (req, res) => { //front page
+    res.sendFile(__dirname + "/login.html")
+    console.log("A user requested the root route");
+  });  
+
+  app.get("/add_product", (req, res) => { //front page
+    res.sendFile(__dirname + "/add_product.html")
+    console.log("A user requested the add product route");
+  }); 
+>>>>>>> edfb6e5 (Commit add product file)
