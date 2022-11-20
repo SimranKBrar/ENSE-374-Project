@@ -1,0 +1,54 @@
+<!-- This is the file for adding and item form-->
+<!DOCTYPE html>
+<html lang="en-US"> 
+
+    <head>
+        <title>Pulaskizon</title>
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    </head>
+
+<body>
+  <%- include("layouts/header") -%>
+  <%- include("layouts/menu") -%>
+
+
+  <main>
+    <div class="block3">
+        <form class="form" action="/index" method="get">
+              
+        <h1>List Item</h1>
+        <!-- below are the inputs to the form -->
+<div class="input-group mb-3" id = "newTask">
+<input type="text" class="form-control" name="itemName" id ="newText" placeholder="Item Name" aria-label="new task" aria-describedby="basic-addon2">
+</div>
+
+<div class="input-group mb-3" id = "newTask">
+<input type="text" class="form-control" name="itemPrice" id ="newText" placeholder="Item Price" aria-label="new task" aria-describedby="basic-addon2">
+</div>
+
+<div class="input-group mb-3" id = "newTask">
+<input type="text" class="form-control" name="itemDesc" id ="newText" placeholder="item Description" aria-label="new task" aria-describedby="basic-addon2">
+</div>
+
+<div class="input-group mb-3">
+<label class="input-group-text" for="inputGroupFile01">Upload</label>
+<input type="file" class="form-control" name="itemFile" id="inputGroupFile01">
+</div>
+        
+        
+
+<input type="submit"  class="btn btn-success" value="List Item">
+
+
+</form>
+
+</main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>

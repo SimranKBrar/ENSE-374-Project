@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 app.set("view engine", "ejs");
-const port = 3004;
+const port = 3005;
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -17,51 +17,53 @@ app.listen (port, () => {
 });
 
 app.get("/", (req, res) => { //front page
-    res.sendFile(__dirname + "/index.html")
+  res.sendFile(__dirname + "/register.html")
+  // res.render("index");
     console.log("A user requested the root route");
   });
-<<<<<<< HEAD
-  app.get("/list.html", (req, res) => { //front page
-    res.sendFile(__dirname + "/list.html")
+
+  app.get("/list", (req, res) => { //form to list an item
+    res.render("addItem");
     console.log("A user requested the root route");
   });
-  app.get("/cart.html", (req, res) => { //front page
+
+  app.get("/index", (req, res) => { //redirect to front page
+    res.redirect( "/" );
+    console.log("A user requested the root route");
+  });
+
+  app.get("/index", (req, res) => { //redirect to front page
+    res.redirect( "/" );
+    console.log("A user requested the root route");
+  });
+
+  app.get("/search", (req, res) => { //search results or category results
+    res.render("items");
+    console.log("A user requested the root route");
+  });
+  app.get("/itemdetail", (req, res) => { //item detail page
+    res.render("itemDesc");
+    console.log("A user requested the root route");
+  });
+
+
+
+
+  app.get("/cart.html", (req, res) => { //page for cart
     res.sendFile(__dirname + "/cart.html")
     console.log("A user requested the root route");
   });
-  app.get("/index", (req, res) => { //front page
-    res.sendFile(__dirname + "/index.html")
-    console.log("A user requested the root route");
-  });
-  app.get("/index.html", (req, res) => { //front page
-    res.sendFile(__dirname + "/index.html")
-    console.log("A user requested the root route");
-  });
-  app.get("/search.html", (req, res) => { //front page
-    res.sendFile(__dirname + "/search.html")
-    console.log("A user requested the root route");
-  });
-  app.get("/itemdetail.html", (req, res) => { //front page
-    res.sendFile(__dirname + "/itemdetail.html")
-    console.log("A user requested the root route");
-  });
-  app.get("/checkout.html", (req, res) => { //front page
+  app.get("/checkout.html", (req, res) => { //checkout form
     res.sendFile(__dirname + "/checkout.html")
     console.log("A user requested the root route");
   });
-  app.get("/menu.html", (req, res) => { //front page
+  app.get("/menu.html", (req, res) => { //render menu page
     res.sendFile(__dirname + "/menu.html")
     console.log("A user requested the root route");
   });
-=======
-
-  app.get("/login", (req, res) => { //front page
-    res.sendFile(__dirname + "/login.html")
-    console.log("A user requested the root route");
-  });  
+  
 
   app.get("/add_product", (req, res) => { //front page
     res.sendFile(__dirname + "/add_product.html")
     console.log("A user requested the add product route");
   }); 
->>>>>>> edfb6e5 (Commit add product file)
