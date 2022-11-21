@@ -16,59 +16,14 @@
 
   <%- include("layouts/menu") -%>
   <!-- above two render header bar and side menu -->
+  <!-- each form below is an item card -->
     <main>
        
         <h1 class="searchtitlemain"> Search </h1>
         <div class="searchgrid">
-            <form action="itemdetail" method = "get">
-               <div class="card2">
-                <input name="_id" type="hidden" value="37" />
-                <div>
-              <p ><img class="imgsearch"src="css/ship.jpg" alt="ship" /></p>
-              <span class="searchtitle" ></span><button class="itemCard" type="submit" >Item Name</button></span>
-              <span class="searchprice">$XX.XX</span>
-              <p class="searchtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit</p>
-         
-                 </div>
-                </div>
-            </form>
-            <form action="itemdetail" method = "get">
-                <div class="card2">
-                 <input name="_id" type="hidden" value="37" />
-                 <div>
-               <p ><img class="imgsearch"src="css/ship.jpg" alt="ship" /></p>
-               <span class="searchtitle" ></span><button class="itemCard" type="submit" >Item Name</button></span>
-               <span class="searchprice">$XX.XX</span>
-               <p class="searchtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit</p>
-          
-                  </div>
-                 </div>
-             </form>
-             <form action="itemdetail" method = "get">
-                <div class="card2">
-                 <input name="_id" type="hidden" value="37" />
-                 <div>
-               <p ><img class="imgsearch"src="css/ship.jpg" alt="ship" /></p>
-               <span class="searchtitle" ></span><button class="itemCard" type="submit" >Item Name</button></span>
-               <span class="searchprice">$XX.XX</span>
-               <p class="searchtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit</p>
-          
-                  </div>
-                 </div>
-             </form>
-             <form action="itemdetail" method = "get">
-                <div class="card2">
-                 <input name="_id" type="hidden" value="37" />
-                 <div>
-               <p ><img class="imgsearch"src="css/ship.jpg" alt="ship" /></p>
-               <span class="searchtitle" ></span><button class="itemCard" type="submit" >Item Name</button></span>
-               <span class="searchprice">$XX.XX</span>
-               <p class="searchtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit</p>
-          
-                  </div>
-                 </div>
-             </form>
-  
+            <% for (let Item of items) { %>             
+            <%-include("partials/itemCard.ejs", {  Item : Item}) -%>
+            <% } %>
             
         </div>
     </main>

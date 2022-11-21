@@ -89,6 +89,11 @@ ul.list-none {
 	color: #feffff;
 
 }
+.sidebar ul li  .green{
+
+	background:#5bc583 !important;
+
+}
 .sidebar2 ul li a{
 	display: block;
 	padding: 16px 25px;
@@ -146,7 +151,13 @@ div.block3 {
     padding: 10px;
     
 }
-
+.hiddenButton{
+	background: transparent;
+    border: none !important;
+	width: 150px;
+	margin: 0px;
+	padding: 0px;
+}
 .itemCard{
 
     background: transparent;
