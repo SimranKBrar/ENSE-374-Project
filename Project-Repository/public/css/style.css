@@ -271,3 +271,11 @@ div.block3 {
 	box-shadow: 10px 0 20px rgba(0,0,0,0.45);
 
 }
+
+.logo_center{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    margin-top: 50px;
+  }
