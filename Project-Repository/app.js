@@ -68,12 +68,12 @@ app.listen (port, () => {
 app.get("/", (req, res) => { //front page
   res.sendFile(__dirname + "/register.html")
    
-    console.log("A user requested the root route");
+    console.log("A user requested the register page");
   });
 
   app.get("/list", (req, res) => { //form to list an item
     res.render("addItem");
-    console.log("A user requested the root route");
+    console.log("A user requested the Add product page");
   });
 
   app.get("/index", (req, res) => { //redirect to front page
@@ -83,7 +83,12 @@ app.get("/", (req, res) => { //front page
 
   app.get("/index.html", (req, res) => { //redirect to front page
     res.render("index");
-    console.log("A user requested the root route");
+    console.log("A user requested the dashboard page");
+  });
+
+  app.get("/my_products", (req, res) => { //redirect to front page
+    res.render("my_products");
+    console.log("A user requested the my product page");
   });
 
   app.get("/search", async(req, res) => {//search results or category results
