@@ -22,7 +22,8 @@
         <h1>List Item</h1>
         <!-- below are the inputs to the form -->
 <div class="input-group mb-3" id = "newTask">
-<input type="text" class="form-control" name="itemName" id ="newText" placeholder="Item Name" aria-label="new task" aria-describedby="basic-addon2">
+  
+  <input type="text" class="form-control" name="itemName" id ="newText" placeholder="Item Name" aria-label="new task" aria-describedby="basic-addon2">
 </div>
 
 <div class="input-group mb-3" id = "newTask">
@@ -33,9 +34,21 @@
 <input type="text" class="form-control" name="itemDesc" id ="newText" placeholder="item Description" aria-label="new task" aria-describedby="basic-addon2">
 </div>
 
+
+
 <div class="input-group mb-3" id = "newTask">
-<input type="text" class="form-control" name="itemCat" id ="newText" placeholder="item Category" aria-label="new task" aria-describedby="basic-addon2">
-</div>
+  
+    <select type="text" class="form-control" name="itemCat" id ="newText" aria-label="new task" aria-describedby="basic-addon2">
+      <option value="0">Select category:</option>
+      <option value="1">Cars & vehicles</option>
+      <option value="2">Electronic</option>
+      <option value="3">Furniture</option>
+      <option value="4">Toys</option>
+      <option value="5">Grocery</option>
+      <option value="6">Clothes</option>
+    </select>
+  
+  </div>
 
 <div class="input-group mb-3">
 <label class="input-group-text" for="inputGroupFile01">Upload</label>
