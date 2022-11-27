@@ -156,7 +156,7 @@ app.get("/", (req, res) => { //front page
             res.redirect( "/" );
         } else {
             passport.authenticate( "local" )( req, res, () => {
-                res.render( "index" ); 
+                res.render( "index",{username: req.body["username"]}); 
             });
         }
     });
