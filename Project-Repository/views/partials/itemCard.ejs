@@ -4,7 +4,8 @@
      <input name="category" type="hidden" value="<%= Item.category %> "/>
      <input name="user" type="hidden" value="<%= Item.creator %> "/>
      <div>
-   <p ><img class="imgsearch"src="css/<%= Item.img %>" alt="ship" /></p>
+   <p ><img class="imgsearch"src="data:image/<%=Item.img.contentType%>;base64,
+    <%=Item.img.data.toString('base64')%>" alt="ship" /></p>
    <span class="searchtitle" ></span><button class="itemCard" type="submit" ><%= Item.text %></button></span>
    <span class="searchprice">$<%= Item.price %></span>
     <p class="searchtext"><%= Item.desc %></p>

@@ -2,14 +2,20 @@
 const express = require("express");
 const app = express();
 app.set("view engine", "ejs");
-const port = 3006;
+const port = 3007;
 
 const session = require("express-session")
 const passport = require("passport")
 const passportLocalMongoose = require("passport-local-mongoose")
 require("dotenv").config();
 
+var bodyParser = require('body-parser');
+  
+var path = require('path');
+
+
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.use(session({
@@ -49,13 +55,71 @@ const itemSchema = new mongoose.Schema ({
   text :String,
   price: String,
   desc: String,
-  img: String,
+  img:
+  {
+      data: Buffer,
+      contentType: String
+  },
   category: String,
   creator : userSchema
 });
 // this creates a collection called `games` (Weird, but intuitive)
 //const Users = mongoose.model ( "Users", userSchema );
 const Items = mongoose.model ( "Items", itemSchema );
+
+
+var imageSchema = new mongoose.Schema({
+
+  img:
+  {
+      data: Buffer,
+      contentType: String
+  }
+});
+var imgModel=  mongoose.model('Image', imageSchema);
+var multer = require('multer');
+  
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+  
+var upload = multer({ storage: storage });
+
+app.get('/image', (req, res) => {
+  imgModel.find({}, (err, items) => {
+      if (err) {
+          console.log(err);
+          res.status(500).send('An error occurred', err);
+      }
+      else {
+          res.render('imagesPage', { items: items });
+      }
+  });
+});
+app.post('/image', upload.single('image'), async(req, res) => {
+  
+  var obj = {
+          img: {
+          data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+          contentType: 'image/png'
+      }
+  }
+  console.log(req.file.filename);
+  imgModel.create(obj, (err, item) => {
+      if (err) {
+          console.log(err);
+      }
+      else {
+          // item.save();
+          res.redirect('/image');
+      }
+  });
+});
 
 const fs = require( "fs" ); 
 const { stringify } = require("querystring");
@@ -106,7 +170,7 @@ app.get("/", (req, res) => { //front page
   });
 
 
-  app.post("/additem", async(req, res) => { //search results or category results
+  app.post("/additem", upload.single('image'), async(req, res) => { //search results or category results
     
     const items = await Items.count();
 
@@ -118,7 +182,10 @@ app.get("/", (req, res) => { //front page
       text : req.body.itemName,
       price:  req.body.itemPrice,
       desc:  req.body.itemDesc,
-      img: req.body.itemFile,
+      img: {
+        data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+        contentType: 'image/png'
+    },
       category:  req.body.itemCat,
       creator : req.user
   });
