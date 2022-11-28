@@ -14,19 +14,18 @@
   <%- include("layouts/header") -%>
   <%- include("layouts/menu") -%>
   <main>
-    <div class="content">
-     <h1><%= items[0].text %></h1>
-     <h2>$<%= items[0].price %></h2>
-     <p ><img class="imgsearch"src="data:image/<%=items[0].img.contentType%>;base64,
-      <%=items[0].img.data.toString('base64')%>" alt="ship" /></p>
-      <p>Item Posted By: <%= username %></p>
-     <p><%= items[0].desc %></p>
-    <form action="/contact" method="post">
-      <input name="_id" type="hidden" value="<%= items[0]._id %>" />
-        <input type="submit"  class="button btn btn-success" value="Contact Seller"> 
-      </form>
+    <div id="cart">
+        <h1>     Messages</h1>
+        <% for (let contact of contacts) { %>             
+            <%-include("partials/contactCard.ejs", {  contact: contact}) -%>
+            <% } %>
+
+
+      </div>
+
     </div>
-</main>
+  </main>
+
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>

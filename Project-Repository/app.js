@@ -30,16 +30,17 @@ app.use (passport.session());
 
 const mongoose = require( 'mongoose' );
 
-// connects to the "test" database (ensure mongod is running!)
-// the later arguments fix some deprecation warnings
+
 mongoose.connect( 'mongodb://localhost:27017/test', 
                   { useNewUrlParser: true, useUnifiedTopology: true });
 
-const userSchema = new mongoose.Schema ({
+const userSchema = new mongoose.Schema ({ //schema for users
   username: String,
   password: String,
 });
-userSchema.plugin(passportLocalMongoose);
+
+
+userSchema.plugin(passportLocalMongoose);  //passport setup for login and signup pages
 
 const User = new mongoose.model("User", userSchema);
 
@@ -50,7 +51,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-const itemSchema = new mongoose.Schema ({
+const itemSchema = new mongoose.Schema ({ //item schema 
   _id : Number,
   text :String,
   price: String,
@@ -63,23 +64,22 @@ const itemSchema = new mongoose.Schema ({
   category: String,
   creator : userSchema
 });
-// this creates a collection called `games` (Weird, but intuitive)
-//const Users = mongoose.model ( "Users", userSchema );
+itemSchema.index({text: 'text'});
+
 const Items = mongoose.model ( "Items", itemSchema );
 
-
-var imageSchema = new mongoose.Schema({
-
-  img:
-  {
-      data: Buffer,
-      contentType: String
-  }
+const contactSchema = new mongoose.Schema ({ //item schema 
+  _id : Number,
+  text :String,
+  item: itemSchema,
+  contactor: userSchema,
+  contacted : userSchema
 });
-var imgModel=  mongoose.model('Image', imageSchema);
+
+const Contacts = mongoose.model ( "Contacts", contactSchema );
 var multer = require('multer');
   
-var storage = multer.diskStorage({
+var storage = multer.diskStorage({ // required for image upload
     destination: (req, file, cb) => {
         cb(null, 'uploads')
     },
@@ -88,41 +88,26 @@ var storage = multer.diskStorage({
     }
 });
   
-var upload = multer({ storage: storage });
+var upload = multer({ storage: storage }); //required for image upload
 
-app.get('/image', (req, res) => {
-  imgModel.find({}, (err, items) => {
-      if (err) {
-          console.log(err);
-          res.status(500).send('An error occurred', err);
-      }
-      else {
-          res.render('imagesPage', { items: items });
-      }
-  });
-});
-app.post('/image', upload.single('image'), async(req, res) => {
-  
-  var obj = {
-          img: {
-          data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-          contentType: 'image/png'
-      }
-  }
-  console.log(req.file.filename);
-  imgModel.create(obj, (err, item) => {
-      if (err) {
-          console.log(err);
-      }
-      else {
-          // item.save();
-          res.redirect('/image');
-      }
-  });
-});
 
 const fs = require( "fs" ); 
 const { stringify } = require("querystring");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen (port, () => {
 
@@ -150,12 +135,24 @@ app.get("/", (req, res) => { //front page
     console.log("A user requested the dashboard page");
   });
 
-  app.get("/my_products", (req, res) => { //redirect to front page
+  app.get("/my_products", (req, res) => { //redirect to my products page
     res.render("my_products");
     console.log("A user requested the my product page");
   });
 
-  app.get("/search", async(req, res) => {//search results or category results
+  app.post("/search", async(req, res) => {//search results
+    
+    let searchString = req.body.searchText;
+    const items = await Items.find({$text: {$search: searchString}});
+    console.log(items);
+    const username =req.user.username;
+    res.render("items", { username: username, items: items }); //send that alongside username to renders
+    
+    console.log("A user requested the root route");
+  });
+
+
+  app.get("/allItems", async(req, res) => {//displays all items
     
     
     const items = await Items.find();
@@ -163,14 +160,20 @@ app.get("/", (req, res) => { //front page
     const username =req.user.username;
         res.render("items", { username: username, items: items }); //send that alongside username to renders
     
-    
-   // res.render("items");
-
     console.log("A user requested the root route");
   });
 
+  app.post("/category", async(req, res) => {//displays items based on which category is slected
+   
+    
+    const items = await Items.find({category : req.body.category });
+    console.log(items);
+    const username =req.user.username;
+    res.render("items", { username: username, items: items }); //send that alongside username to renders
+    
+  });
 
-  app.post("/additem", upload.single('image'), async(req, res) => { //search results or category results
+  app.post("/additem", upload.single('image'), async(req, res) => { //add item to data base from form
     
     const items = await Items.count();
 
@@ -207,7 +210,8 @@ app.get("/", (req, res) => { //front page
     
     const items = await Items.find( { _id : req.body._id});
     console.log(items);
-    res.render("itemDesc", { items: items });  // sends item to get rendered
+    const username = req.user.username;
+    res.render("itemDesc", { items: items, username: username });  // sends item to get rendered
     console.log("A user requested the root route");
   });
 
@@ -231,9 +235,9 @@ app.get("/", (req, res) => { //front page
   
   });
 
-
-
   app.post("/register", (req, res) => { //register route using passport
+console.log(req.body.email);
+console.log(req.body.name);
 
 
     console.log( "User " + req.body.username + " is attempting to register" );
@@ -258,10 +262,68 @@ app.get("/", (req, res) => { //front page
   });
 
 
-  app.get("/cart.html", (req, res) => { //page for cart
-    res.sendFile(__dirname + "/cart.html")
-    console.log("A user requested the root route");
+  app.post("/contact", async(req, res) => { //redirects to contact form
+    const items = await Items.find( { _id : req.body._id});
+   
+    console.log("A user requested the conatct form");
+    
+    res.render("contact", { items: items });
   });
+
+  app.get("/contactPage", async(req, res) => { //redirects to contact page
+    let username = req.user;
+    const contacts = await Contacts.find({contacted : username});
+   console.log(contacts.contacted);
+   console.log(req.user);
+   console.log(contacts.contacted);
+   console.log(req.user.username);
+    console.log("A user requested the conatct form");
+    
+    res.render("contaced", { contacts: contacts });
+  });
+ 
+
+  app.post("/contactForm", async(req, res) => { //redirects to contact form
+   
+  
+    console.log( req.body.contactInfo);
+    console.log(req.body._id);
+    console.log(req.user.username);
+    // save conatct info within its own data table
+
+    const contacts = await Contacts.count();
+
+    const items = await Items.find({_id : req.body._id});
+    const item = items[0];
+    let contactCount = contacts + 1;
+    console.log(contactCount);
+
+    const contact = new Contacts({
+      _id : contactCount,
+      text : req.body.contactInfo,
+      item: item,
+      contactor: req.user,
+      contacted : item.creator
+  });
+  
+  contact.save();
+  
+ 
+    res.redirect( "/index");
+ 
+    console.log("A user requested the contact form");
+  });
+
+
+
+
+
+
+
+
+
+
+
   app.get("/checkout.html", (req, res) => { //checkout form
     res.sendFile(__dirname + "/checkout.html")
     console.log("A user requested the root route");

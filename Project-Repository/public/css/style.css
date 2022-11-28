@@ -1,7 +1,7 @@
 
-
 body{
 	background: #f5f5f5;
+
 }
 
 .top_navbar .logo{
@@ -14,13 +14,11 @@ body{
 	text-transform: uppercase;
 }
 main{
+	position: relative;
+	top: -450px;
+	width: 1000px;
+	display:inline-block;
 	
-	position: fixed;
-	top: 60px;
-	left: 150px;
-	display: flex;
- 	justify-content: center;
-	float: left;
 }
 .content{
 	margin-top: 300 px;
@@ -30,16 +28,18 @@ main{
 }
 
 .right{
+	width: 400px;
 	text-align: center;
-	position: fixed;
-	top: 400px;
-	left: 950px;
+	position: relative;
+	top: 430px;
+    left: 650px;
 }
 .left{
-	
-	position: fixed;
-	top: 400px;
-	left: 350px;
+	width: 300px;
+	text-align: center;
+	position: relative;
+	top: 250px;
+    left: 150px;
 	display: flexbox;
 }
 .item{
@@ -50,8 +50,9 @@ main{
 	grid-template-columns: 1fr 1fr;
 }
 .top_navbar{
-	position: fixed;
-	top: 0;
+	position: relative;
+	top: 0px;
+	z-index: 10;
 	left: 0;
 	width: 100%;
 	height: 60px;
@@ -64,21 +65,25 @@ ul.list-none {
 	list-style-type: none;
 	padding-left: 0px;
   }
+  .wrapper{
+	display:inline-block;
+  }
 .sidebar{
-	position: fixed;
-	top: 60px;
+	position: relative;
+	z-index: 10;
 	left: 0;
 	width: 150px;
-	height: 100vh;
+	margin-right: 0px;
 	background: #ffffff;
 	box-shadow: 25px 0px 20px -20px rgba(0,0,0,0.45);
+	display:inline-block;
 }
 .sidebar2{
-	position: fixed;
+	position: relative;
 	top: 60px;
 	left: 150px;
 	width: 150px;
-	height: 100vh;
+
 	background: #5bc583;
 	box-shadow: 25px 0px 20px -20px rgba(0,0,0,0.45);
 }
@@ -141,7 +146,7 @@ ul.list-none {
 div.block3 {
     display: block;
     text-align: center;
-	position: fixed;
+	position: relative;
 	top: 70px;
 	left: 550px;
 	width: 600px;
@@ -169,9 +174,14 @@ div.block3 {
 	
 }
 #cart{
-	position: fixed;
-	top: 70px;
-	left: 550px;
+	
+	position: relative;
+	
+	width: 800px;
+	top: 230px;
+	left: 150px;
+	
+	
 }
 .imgclass{
     width: 75px;
@@ -203,14 +213,20 @@ div.block3 {
     float: right;
 }
 .searchtitlemain{
-	position: fixed;
-	top: 70px;
-	left: 750px;
+	position: relative;
+	left: 50%;
+}
+.mainbanner{
+	width: 600px;
+	text-align: center;
+	position: relative;
+	top: 380px;
+	left: 25%;
 }
 .searchgrid{
-	position: fixed;
-	top: 150px;
-	left: 450px;
+	position: relative;
+	
+	left: 150px;
 		width: 840px;
 	
 		display: flex;
@@ -249,7 +265,7 @@ div.block3 {
 .block{
 	display: grid;
 	width: 100%;
-	height: 100vh;
+
 	grid-template-columns: 1fr 1fr;
 	padding: 150px;
 	grid-gap: 280px; 
