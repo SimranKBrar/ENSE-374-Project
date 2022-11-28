@@ -4,6 +4,16 @@ body{
 
 }
 
+main{
+	position: relative;
+	top: -450px;
+	width: 1000px;
+	display:inline-block;
+	
+}
+
+
+/* css for top nav bar starts here */
 .top_navbar .logo{
 	width: 250px;
 	font-size: 25px;
@@ -13,20 +23,114 @@ body{
 	letter-spacing: 2px;
 	text-transform: uppercase;
 }
-main{
+.top_navbar{
 	position: relative;
-	top: -450px;
-	width: 1000px;
-	display:inline-block;
-	
-}
-.content{
-	margin-top: 300 px;
-	width: 1300px;
-	text-align: center;
-	
+	top: 0px;
+	z-index: 10;
+	left: 0;
+	width: 100%;
+	height: 60px;
+	background: #ffffff;
+	box-shadow: 10px 0 20px rgba(0,0,0,0.45);
+	display: flex;
+	align-items: center;
 }
 
+.hiddenButton2{
+	background: transparent;
+    border: none !important;
+	width: 45px;
+	margin: 0px;
+	padding: 0px;
+}
+ /* css for top navbar ends here */
+
+
+
+
+ /* css for side nav bar starts here*/
+
+
+
+ ul.list-none {
+	list-style-type: none;
+	padding-left: 0px;
+  }
+  .wrapper{
+	display:inline-block;
+  }
+.sidebar{
+	position: relative;
+	z-index: 10;
+	left: 0;
+	width: 175px;
+
+	background: #ffffff;
+	box-shadow: 25px 0px 20px -20px rgba(0,0,0,0.45);
+	display:inline-block;
+}
+
+.sidebar ul li a{
+	display: block;
+	padding: 16px 25px;
+	border-bottom: 1px solid #d8dcde;
+	color: #feffff;
+
+}
+.sidebar ul li  .green{
+
+	background:#5bc583 !important;
+
+}
+
+
+.sidebar ul li a .icon{
+	font-size: 18px;
+  color: rgb(0, 0, 0);
+	vertical-align: middle;
+
+}
+
+.sidebar ul li a .text{
+	margin-left: 19px;
+	color: rgb(0, 0, 0);
+  font-family: sans-serif;
+  font-size: 18px;
+	letter-spacing: 2px;
+}
+
+
+.sidebar ul li a:hover{
+	background: #5bc583;
+	color: #5bc583;
+}
+
+
+
+
+.hiddenButton{
+	background: transparent;
+    border: none !important;
+	width: 175px;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.searchForm {
+    margin-left: 100px;
+    width: 700px !important;
+}
+
+
+
+
+
+
+ /* css for side nav bar ends here*/
+
+
+/* HOME PAGE CSS  */
 .right{
 	width: 400px;
 	text-align: center;
@@ -49,106 +153,36 @@ main{
 	grid-gap: 10px;
 	grid-template-columns: 1fr 1fr;
 }
-.top_navbar{
+
+.mainbanner{
+	width: 600px;
+	text-align: center;
 	position: relative;
-	top: 0px;
-	z-index: 10;
-	left: 0;
-	width: 100%;
-	height: 60px;
-	background: #ffffff;
-	box-shadow: 10px 0 20px rgba(0,0,0,0.45);
-	display: flex;
-	align-items: center;
-}
-ul.list-none {
-	list-style-type: none;
-	padding-left: 0px;
-  }
-  .wrapper{
-	display:inline-block;
-  }
-.sidebar{
-	position: relative;
-	z-index: 10;
-	left: 0;
-	width: 250px;
-
-	background: #ffffff;
-	box-shadow: 25px 0px 20px -20px rgba(0,0,0,0.45);
-	display:inline-block;
-}
-.sidebar2{
-	position: relative;
-	top: 60px;
-	left: 150px;
-	width: 150px;
-
-	background: #5bc583;
-	box-shadow: 25px 0px 20px -20px rgba(0,0,0,0.45);
-}
-.sidebar ul li a{
-	display: block;
-	padding: 16px 25px;
-	border-bottom: 1px solid #d8dcde;
-	color: #feffff;
-
-}
-.sidebar ul li  .green{
-
-	background:#5bc583 !important;
-
-}
-.sidebar2 ul li a{
-	display: block;
-	padding: 16px 25px;
-	border-bottom: 1px solid #d8dcde;
-	color: #feffff;
-
+	top: 380px;
+	left: 25%;
 }
 
-.sidebar ul li a .icon{
-	font-size: 18px;
-  color: rgb(0, 0, 0);
-	vertical-align: middle;
 
-}
-.sidebar2 ul li a .icon{
-	font-size: 18px;
-  color: rgb(0, 0, 0);
-	vertical-align: middle;
 
-}
+/* HOME PAGE CSS ^^ */
 
-.sidebar ul li a .text{
-	margin-left: 19px;
-	color: rgb(0, 0, 0);
-  font-family: sans-serif;
-  font-size: 18px;
-	letter-spacing: 2px;
-}
-.sidebar2 ul li a .text{
-	margin-left: 19px;
-	color: rgb(0, 0, 0);
-  font-family: sans-serif;
-  font-size: 18px;
-	letter-spacing: 2px;
+
+.content{
+	margin-top: 300 px;
+	width: 1300px;
+	text-align: center;
+	
 }
 
-.sidebar ul li a:hover{
-	background: #5bc583;
-	color: #5bc583;
-}
-.sidebar2 ul li a:hover{
-	background: #5bc583;
-	color: #5bc583;
-}
+
+
+
 div.block3 {
     display: block;
     text-align: center;
 	position: relative;
-	top: 70px;
-	left: 550px;
+	top: 230px;
+	left: 330px;
 	width: 600px;
 	text-align: center;
     background-color: #82b68f;
@@ -156,13 +190,7 @@ div.block3 {
     padding: 10px;
     
 }
-.hiddenButton{
-	background: transparent;
-    border: none !important;
-	width: 150px;
-	margin: 0px;
-	padding: 0px;
-}
+
 .itemCard{
 
     background: transparent;
@@ -178,11 +206,12 @@ div.block3 {
 	position: relative;
 	
 	width: 800px;
-	top: 230px;
+	top: 330px;
 	left: 150px;
 	
 	
 }
+
 .imgclass{
     width: 75px;
   	height: 75px;
@@ -216,13 +245,7 @@ div.block3 {
 	position: relative;
 	left: 50%;
 }
-.mainbanner{
-	width: 600px;
-	text-align: center;
-	position: relative;
-	top: 380px;
-	left: 25%;
-}
+
 .searchgrid{
 	position: relative;
 	
@@ -295,3 +318,5 @@ div.block3 {
     /* justify-content: center; */
     margin-top: 50px;
   }
+
+  /* login and register page css ^^*/
