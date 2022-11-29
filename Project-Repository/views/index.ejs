@@ -18,52 +18,15 @@
          <h1>Welcome to Pulaskizon</h1>
          <img src="css/ship.jpg" alt="ship" width="600" height="200">
         </div>
-        <p class="bottom">
-            <div class="right">
-              <!-- Items in the group to the right -->
-                <h1>Featured</h1>
-                <div class="item">
-                    <div>
-                      <a href="itemdetail.html">
-                    <img src="css/ship.jpg" width="200" height="100"/>
-                    <span class="caption">Spaceship</span></a>
-                  </div>
-                  <div>
-                    <a href="itemdetail.html">
-                    <img src="css/ship.jpg"width="200" height="100"/>
-                    <span class="caption">Enterprise</span></a>
-                  </div>
-
-                </div>
-            </div>
-            <div class ="left">
-              <!-- Items displayed in the group in the left -->
-                <h1>On Sale</h1>
-                <div class="item">
-                    <div>
-                      <a href="itemdetail.html">
-                    <img src="css/ship.jpg" width="150" height="75"/>
-                    <span class="caption">Spaceship</span></a>
-                  </div>
-                  <div>
-                    <a href="itemdetail.html">
-                    <img src="css/ship.jpg"width="150" height="75"/>
-                    <span class="caption">Enterprise</span></a>
-                  </div>
-                  <div>
-                    <a href="itemdetail.html">
-                    <img src="css/ship.jpg" width="150" height="75"/>
-                    <span class="caption">Spaceship</span></a>
-                  </div>
-                  <div>
-                    <a href="itemdetail.html">
-                    <img src="css/ship.jpg" width="150" height="75"/>
-                    <span class="caption">Enterprise</span></a>
-                  </div>
-
-                </div>
-            </div>
-        </p>
+        <div class="bottom">
+          <h2 class="new">New</h2>
+          <div class="searchgrid2">
+            <% for (let Item of items) { %>             
+            <%-include("partials/newitems.ejs", {  Item : Item}) -%>
+            <% } %>
+            
+        </div>
+      </div>
     </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
