@@ -1,5 +1,6 @@
 //setup
 const express = require("express");
+const mongoose = require( 'mongoose' );
 const app = express();
 app.set("view engine", "ejs");
 const port = 3007;
@@ -28,7 +29,7 @@ app.use (passport.initialize());
 app.use (passport.session());
 
 
-const mongoose = require( 'mongoose' );
+
 
 
 mongoose.connect( 'mongodb://localhost:27017/test', 
@@ -127,7 +128,8 @@ app.get("/", (req, res) => { //front page
 
   app.get("/index", async(req, res) => { //redirect to front page
     const items = await (await Items.find().limit(4).sort({_id : -1}));
-    res.render("index", {  items: items });
+    const u = req.user.username;
+    res.render("index", {  items: items, u : u });
     console.log("A user requested the root route");
   });
 
@@ -163,6 +165,7 @@ app.get("/", (req, res) => { //front page
     console.log("A user requested the root route");
   });
 
+ 
   app.post("/category", async(req, res) => {//displays items based on which category is slected
    
     
@@ -173,6 +176,19 @@ app.get("/", (req, res) => { //front page
     res.render("items", { username: username, items: items, category :category }); //send that alongside username to renders
     
   });
+
+  app.post("/my_product", async(req, res) => {//displays items based on which category is slected
+   
+    
+    const items = await Items.find({creator : req.body.username });
+    
+    const username =req.user.username;
+    let category = req.body.category;
+    res.render("items", { username: username, items: items, category :category }); //send that alongside username to renders
+    
+  });
+
+  
 
   app.post("/additem", upload.single('image'), async(req, res) => { //add item to data base from form
     
@@ -232,12 +248,7 @@ app.get("/", (req, res) => { //front page
   });
 
   app.post("/register", (req, res) => { //register route using passport
-console.log(req.body.email);
-console.log(req.body.name);
-
-
     console.log( "User " + req.body.username + " is attempting to register" );
-    if(req.body.auth == process.env.AUTHKEY){
       User.register({ username : req.body.username }, 
         req.body.password, 
         ( err, user ) => {
@@ -246,16 +257,12 @@ console.log(req.body.name);
   res.redirect( "/" );
   } else {
   passport.authenticate( "local" )( req, res, () => {
-    res.redirect( "/index" );
+    res.redirect( "/" );
   });
   }
   });
-    }
-    else{
-      res.redirect( "/" );
-    }
-  
   });
+
 
 
   app.post("/contact", async(req, res) => { //redirects to contact form
@@ -330,3 +337,14 @@ console.log(req.body.name);
     res.sendFile(__dirname + "/add_product.html")
     console.log("A user requested the add product route");
   }); 
+
+  app.get('/logout', function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { 
+          return next(err); 
+      }
+      res.redirect('/');
+    });
+  });
+
+  
