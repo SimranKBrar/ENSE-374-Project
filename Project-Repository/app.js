@@ -177,6 +177,17 @@ app.get("/", (req, res) => { //front page
     
   });
 
+  app.post("/my_product", async(req, res) => {//displays items based on which category is slected
+   
+    
+    const items = await Items.find({creator : req.body.username });
+    
+    const username =req.user.username;
+    let category = req.body.category;
+    res.render("items", { username: username, items: items, category :category }); //send that alongside username to renders
+    
+  });
+
   
 
   app.post("/additem", upload.single('image'), async(req, res) => { //add item to data base from form
@@ -318,3 +329,14 @@ app.get("/", (req, res) => { //front page
     res.sendFile(__dirname + "/add_product.html")
     console.log("A user requested the add product route");
   }); 
+
+  app.get('/logout', function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { 
+          return next(err); 
+      }
+      res.redirect('/');
+    });
+  });
+
+  
