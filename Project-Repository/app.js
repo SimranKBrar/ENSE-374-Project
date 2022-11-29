@@ -128,7 +128,8 @@ app.get("/", (req, res) => { //front page
 
   app.get("/index", async(req, res) => { //redirect to front page
     const items = await (await Items.find().limit(4).sort({_id : -1}));
-    res.render("index", {  items: items });
+    const u = req.user.username;
+    res.render("index", {  items: items, u : u });
     console.log("A user requested the root route");
   });
 
