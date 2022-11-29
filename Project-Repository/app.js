@@ -125,8 +125,9 @@ app.get("/", (req, res) => { //front page
     console.log("A user requested the Add product page");
   });
 
-  app.get("/index", (req, res) => { //redirect to front page
-    res.render("index");
+  app.get("/index", async(req, res) => { //redirect to front page
+    const items = await (await Items.find().limit(4).sort({_id : -1}));
+    res.render("index", {  items: items });
     console.log("A user requested the root route");
   });
 
@@ -144,9 +145,8 @@ app.get("/", (req, res) => { //front page
     
     let searchString = req.body.searchText;
     const items = await Items.find({$text: {$search: searchString}});
-    console.log(items);
     const username =req.user.username;
-    res.render("items", { username: username, items: items }); //send that alongside username to renders
+    res.render("search", { username: username, items: items }); //send that alongside username to renders
     
     console.log("A user requested the root route");
   });
@@ -156,9 +156,9 @@ app.get("/", (req, res) => { //front page
     
     
     const items = await Items.find();
-    console.log(items);
+  
     const username =req.user.username;
-        res.render("items", { username: username, items: items }); //send that alongside username to renders
+        res.render("shopall", { username: username, items: items }); //send that alongside username to renders
     
     console.log("A user requested the root route");
   });
@@ -167,9 +167,10 @@ app.get("/", (req, res) => { //front page
    
     
     const items = await Items.find({category : req.body.category });
-    console.log(items);
+    
     const username =req.user.username;
-    res.render("items", { username: username, items: items }); //send that alongside username to renders
+    let category = req.body.category;
+    res.render("items", { username: username, items: items, category :category }); //send that alongside username to renders
     
   });
 
@@ -178,7 +179,7 @@ app.get("/", (req, res) => { //front page
     const items = await Items.count();
 
     let itemCount = items + 1;
-    console.log(itemCount);
+   
 
     const item = new Items({
       _id : itemCount,
@@ -195,21 +196,16 @@ app.get("/", (req, res) => { //front page
   
   item.save();
   
-  console.log(req.body.itemName);
-  console.log(req.body.itemPrice);
-  console.log(req.body.itemDesc);
-  console.log(req.body.itemFile);
-  console.log(req.body.itemCat);
   
     res.redirect( "/index");
-    console.log(req.user);
+    
     console.log("Submitted the item list");
   });
 
   app.post("/itemdetail", async(req, res) => { //item detail page
     
     const items = await Items.find( { _id : req.body._id});
-    console.log(items);
+  
     const username = req.user.username;
     res.render("itemDesc", { items: items, username: username });  // sends item to get rendered
     console.log("A user requested the root route");
@@ -227,7 +223,7 @@ app.get("/", (req, res) => { //front page
             res.redirect( "/" );
         } else {
             passport.authenticate( "local" )( req, res, () => {
-                res.render( "index"); 
+              res.redirect("/index");
             });
         }
     });
@@ -273,10 +269,7 @@ console.log(req.body.name);
   app.get("/contactPage", async(req, res) => { //redirects to contact page
     let username = req.user;
     const contacts = await Contacts.find({contacted : username});
-   console.log(contacts.contacted);
-   console.log(req.user);
-   console.log(contacts.contacted);
-   console.log(req.user.username);
+
     console.log("A user requested the conatct form");
     
     res.render("contaced", { contacts: contacts });
@@ -286,9 +279,7 @@ console.log(req.body.name);
   app.post("/contactForm", async(req, res) => { //redirects to contact form
    
   
-    console.log( req.body.contactInfo);
-    console.log(req.body._id);
-    console.log(req.user.username);
+
     // save conatct info within its own data table
 
     const contacts = await Contacts.count();
@@ -296,7 +287,7 @@ console.log(req.body.name);
     const items = await Items.find({_id : req.body._id});
     const item = items[0];
     let contactCount = contacts + 1;
-    console.log(contactCount);
+
 
     const contact = new Contacts({
       _id : contactCount,
@@ -313,13 +304,6 @@ console.log(req.body.name);
  
     console.log("A user requested the contact form");
   });
-
-
-
-
-
-
-
 
 
 

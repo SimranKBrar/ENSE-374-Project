@@ -15,6 +15,7 @@
   <%- include("layouts/menu") -%>
   <main>
     <div class="content">
+      <div class="itemdesc">
      <h1><%= items[0].text %></h1>
      <h2>$<%= items[0].price %></h2>
      <p ><img class="imgsearch"src="data:image/<%=items[0].img.contentType%>;base64,
@@ -25,6 +26,7 @@
       <input name="_id" type="hidden" value="<%= items[0]._id %>" />
         <input type="submit"  class="button btn btn-success" value="Contact Seller"> 
       </form>
+      </div>
     </div>
 </main>
 

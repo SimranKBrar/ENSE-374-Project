@@ -1,0 +1,13 @@
+<form action="itemdetail" method = "post">
+    <div class="card2">
+     <input name="_id" type="hidden" value="<%= Item._id %>" />
+     <input name="category" type="hidden" value="<%= Item.category %> "/>
+     <input name="user" type="hidden" value="<%= Item.creator %> "/>
+     <div>
+   <p ><img class="imgsearch"src="data:image/<%=Item.img.contentType%>;base64,
+    <%=Item.img.data.toString('base64')%>" alt="ship" /></p>
+   <span class="searchtitle" ></span><button class="itemCard" type="submit" ><%= Item.text %></button></span>
+      
+      </div>
+     </div>
+ </form>
