@@ -307,7 +307,15 @@ console.log(req.body.name);
 
 
 
-
+  app.get("/logout", function (req, res) {//logout using passport
+    req.logout(function(err) {
+      if (err) { 
+          return next(err); 
+      }
+      res.redirect('/');
+    });
+  });
+  
   app.get("/checkout.html", (req, res) => { //checkout form
     res.sendFile(__dirname + "/checkout.html")
     console.log("A user requested the root route");
