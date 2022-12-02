@@ -25,4 +25,7 @@ The reason we wanted to take on this project is because sellers have a hard time
 - [Team Pulaski Project Commercial](https://youtu.be/pHoqODai-V8)
 
 
-## [Kanban](https://github.com/users/Rsa149/projects/3)
+### [Kanban](https://github.com/users/Rsa149/projects/3)
+
+### [Hi-Fi Prototype](https://www.figma.com/file/PZrmqnJo9oelt0rMDfUqz5/ense374?node-id=0%3A1&t=aUlP2I3xSGjiIgHL-1)
+
