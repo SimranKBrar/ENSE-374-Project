@@ -1,3 +1,19 @@
+// ENSE 374 -Project: Pulaskizon-  By: Team Pulaski
+// Technologies used :
+// - HTML/CSS
+// - JavaScript
+// - MongoDB
+// -ejs
+// - express
+// -passport
+// - dotenv 
+// - express-session
+// - mongoose
+// - body-parser 
+// - multer
+// - mongoose
+
+
 //setup
 const express = require("express");
 const mongoose = require( 'mongoose' );
@@ -94,6 +110,7 @@ var upload = multer({ storage: storage }); //required for image upload
 
 const fs = require( "fs" ); 
 const { stringify } = require("querystring");
+const { parseArgs } = require("util")
 
 
 
@@ -338,7 +355,7 @@ app.get("/", (req, res) => { //front page
     console.log("A user requested the add product route");
   }); 
 
-  app.get('/logout', function(req, res, next) {
+  app.get('/logout', function(req, res, next) { //logout functionality
     req.logout(function(err) {
       if (err) { 
           return next(err); 
